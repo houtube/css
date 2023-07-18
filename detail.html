@@ -9,8 +9,8 @@
     <title>Movie List</title>
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/album/album.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src='https://vjs.zencdn.net/7.10.2/video.min.js'></script>
     <script src="./API_KEY.js"></script>
     <script src="./func.js"></script>
     <script>
@@ -99,12 +99,11 @@
                             <div class="card-body">
                                 <h3 id="api-title" class="card-text"></h3>
 
-                                <div class="ratio ratio-16x9">
+                                <div class="video-container">
                                     <embed
-                                        src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"
-                                        preload="none"></embed>
+                                        src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"></embed>
                                 </div>
-                                
+
                                 <div class="mb-4 text-center">
                                     <a id="api-download" href="" class="btn btn-success my-2">DownLoad</a>
                                     <a href="javascript:history.back();" class="btn btn-warning my-2">Go Back</a>
