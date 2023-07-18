@@ -17,7 +17,7 @@
                 $("#mdtimer span").text(sec--);
                 if (sec == 0) {
                     $("#makingdifferenttimer").delay(1000).fadeIn(1000);
-                    $("#mdtimer").hide(1000).fadeOut(fast);
+                    $("#mdtimer").hide(1000);
                 }
             }, 1000);
         });
@@ -62,7 +62,7 @@
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
-                <a href="#">Back to top</a>
+                <a class="btn btn-outline-info" href="#">Back to top</a>
             </p>
             <p>ⓒ Aridjaya</p>
         </div>
