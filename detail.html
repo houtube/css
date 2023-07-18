@@ -40,6 +40,8 @@
                     $("#api-en").text("Original Language : " + data.original_language);
                     $("#api-status").text("Status : " + data.status);
                     $("#api-homepage").attr("href", data.homepage);
+                    $("#api-watch").attr("href", "https://aridjaya.com");
+                    $("#api-download").attr("href", "https://aridjaya.com");
 
                     for (var i = 0; i < data.genres.length; i++) {
                         $('#api-geres').append(
@@ -100,8 +102,10 @@
                                 <h5 id="api-title2" class="card-text"></h5>
                                 <p id="api-content" class="card-text"></p>
 
-                                <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Watch</button>
-                                <button type="button" class="btn btn-secondary"><i class="fa fa-download"></i> Download</button>
+                                <button id="api-watch" type="button" class="btn btn-primary"><i class="fa fa-eye"></i>
+                                    Watch</button>
+                                <button id="api-download" type="button" class="btn btn-secondary"><i
+                                        class="fa fa-download"></i> Download</button>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="text-muted"></small>
