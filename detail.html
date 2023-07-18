@@ -40,8 +40,7 @@
                     $("#api-en").text("Original Language : " + data.original_language);
                     $("#api-status").text("Status : " + data.status);
                     $("#api-homepage").attr("href", data.homepage);
-                    $("#api-watch").attr("href", "https://aridjaya.com");
-                    $("#api-download").attr("href", "https://aridjaya.com");
+                    $("#api-link").attr("href", "https://aridjaya.com");
 
                     for (var i = 0; i < data.genres.length; i++) {
                         $('#api-geres').append(
@@ -98,14 +97,16 @@
 
                             <div class="card-body">
                                 <div class="video-container">
-                                    <div id="api-back"></div>
+                                    <div id="api-back">
+                                        <div class="container" style="height:200px"></div>
+                                    </div>
                                     <embed
                                         src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"></embed>
                                 </div>
 
                                 <div class="mb-4 text-center">
-                                    <a id="api-download" href="" class="btn btn-success my-2">Watch</a>
-                                    <a id="api-download" href="" class="btn btn-warning my-2">Download</a>
+                                    <a id="api-link" href="" class="btn btn-success my-2">Watch</a>
+                                    <a id="api-link" href="" class="btn btn-warning my-2">Download</a>
                                 </div>
 
                                 <h5 id="api-title2" class="card-text"></h5>
