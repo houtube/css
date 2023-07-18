@@ -1,146 +1,142 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Movie List</title>
-        <link
-            href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <link
-            href="https://getbootstrap.com/docs/4.0/examples/album/album.css"
-            rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <script src="./API_KEY.js"></script>
-        <script src="./func.js"></script>
-        <script>
-            $(document).ready(function () {
-                var idd = getParam("id");
-                $.ajax({
-                    url: "https://api.themoviedb.org/3/movie/" + idd + "?api_key=" + API_KEY + 
-                            "&language=en-US",
-                    dataType: "json",
-                    type: 'get',
-                    success: function (data) {
-                        console.log(data);
-                        $("#api-back").css(
-                            "background-image",
-                            "url('https://image.tmdb.org/t/p/original/" + data.backdrop_path + "')"
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Movie List</title>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/album/album.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="./API_KEY.js"></script>
+    <script src="./func.js"></script>
+    <script>
+        $(document).ready(function () {
+            var idd = getParam("id");
+            $.ajax({
+                url: "https://api.themoviedb.org/3/movie/" + idd + "?api_key=" + API_KEY +
+                    "&language=en-US",
+                dataType: "json",
+                type: 'get',
+                success: function (data) {
+                    console.log(data);
+                    $("#api-back").css(
+                        "background-image",
+                        "url('https://image.tmdb.org/t/p/original/" + data.backdrop_path + "')"
+                    );
+                    $("#api-back").css("background-size", "cover");
+                    $("#api-back").css("background-repeat", "no-repeat");
+
+                    $("#api-img").attr(
+                        "src",
+                        "https://image.tmdb.org/t/p/original/" + data.poster_path
+                    );
+                    $("#api-title").text(data.title);
+                    $("#api-title2").text(data.tagline);
+                    $("#api-content").text(data.overview);
+                    $("#api-date").text("Release Date : " + data.release_date);
+                    $("#api-en").text("Original Language : " + data.original_language);
+                    $("#api-status").text("Status : " + data.status);
+                    $("#api-homepage").attr("href", data.homepage);
+
+                    for (var i = 0; i < data.genres.length; i++) {
+                        $('#api-geres').append(
+                            `<span class="badge badge-info">` + data.genres[i].name + `</span> `
                         );
-                        $("#api-back").css("background-size", "cover");
-                        $("#api-back").css("background-repeat", "no-repeat");
-
-                        $("#api-img").attr(
-                            "src",
-                            "https://image.tmdb.org/t/p/original/" + data.poster_path
+                    }
+                    for (var i = 0; i < data.production_countries.length; i++) {
+                        $('#api-geres').append(
+                            `<span class="badge badge-secondary">` + data.production_countries[
+                                i].name +
+                            `</span> `
                         );
-                        $("#api-title").text(data.title);
-                        $("#api-title2").text(data.tagline);
-                        $("#api-content").text(data.overview);
-                        $("#api-date").text("Release Date : " + data.release_date);
-                        $("#api-en").text("Original Language : " + data.original_language);
-                        $("#api-status").text("Status : " + data.status);
-                        $("#api-homepage").attr("href", data.homepage);
+                    }
 
-                        for (var i = 0; i < data.genres.length; i++) {
-                            $('#api-geres').append(
-                                `<span class="badge badge-info">` + data.genres[i].name + `</span> `
-                            );
-                        }
-                        for (var i = 0; i < data.production_countries.length; i++) {
-                            $('#api-geres').append(
-                                `<span class="badge badge-secondary">` + data.production_countries[i].name +
-                                `</span> `
-                            );
-                        }
-
-                    },
-                    error: function (err) {}
-                });
+                },
+                error: function (err) {}
             });
-        </script>
-    </head>
+        });
+    </script>
+</head>
 
-    <body>
-        <header>
-            <div class="navbar navbar-dark bg-dark box-shadow">
-                <div class="container d-flex justify-content-between">
-                    <a href="./index.html" class="navbar-brand d-flex align-items-center">
-                        <strong>Movie Popularity List</strong>
-                    </a>
-                    <div>
-                        <a href="./siginIn.html" class="btn btn-outline-secondary my-2">Sign In</a>
-                        <a href="./siginUp.html" class="btn btn-outline-secondary my-2">Sigin Up</a>
-                        <a href="https://www.themoviedb.org/" class="btn btn-primary my-2 text-right">themoviedb.org</a>
-                    </div>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a href="./index.html" class="navbar-brand d-flex align-items-center">
+                    <strong>Houtube</strong>
+                </a>
+                <div>
+                    <a href="./siginIn.html" class="btn btn-outline-secondary my-2">Sign In</a>
+                    <a href="./siginUp.html" class="btn btn-outline-secondary my-2">Sigin Up</a>
+                    <a href="https://www.themoviedb.org/" class="btn btn-primary my-2 text-right">themoviedb.org</a>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main role="main">
-            <section id="api-back" class="jumbotron text-center" style="border-radius:0;">
-                <div class="container" style="height:200px"></div>
-            </section>
+    <main role="main">
+        <section id="api-back" class="jumbotron text-center" style="border-radius:0;">
+            <div class="container" style="height:200px"></div>
+        </section>
 
-            <div class="album py-5 bg-light">
-                <div class="container">
-                    <div id="main-row" class="row">
-                        <div class="col-md-4">
-                            <div class="card mb-4 box-shadow">
-                                <img id="api-img" class="card-img-top" src="" card="Card" image="image">
-
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card mb-4 box-shadow">
-
-                                <div class="card-body">
-                                    <h3 id="api-title" class="card-text"></h3>
-                                    <br>
-
-                                    <h5 id="api-title2" class="card-text"></h5>
-
-                                    <p id="api-content" class="card-text"></p>
-
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <small class="text-muted"></small>
-                                        <small id="api-date" class="text-muted"></small>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <small class="text-muted"></small>
-                                        <small id="api-en" class="text-muted"></small>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div id="api-geres"></div>
-                                        <div id="api-contries"></div>
-                                        <small id="api-status" class="text-muted"></small>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <a id="api-homepage" href="" class="btn btn-success my-2">HomePage</a>
-                            <a href="javascript:history.back();" class="btn btn-warning my-2">Go Back</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </main>
-
-        <footer class="text-muted">
+        <div class="album py-5 bg-light">
             <div class="container">
-                <p class="float-right">
-                    <a href="#">Back to top</a>
-                </p>
-                <p>ⓒ Jungh0 2020</p>
-            </div>
-        </footer>
+                <div id="main-row" class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img id="api-img" class="card-img-top" src="" card="Card" image="image">
 
-    </body>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-4 box-shadow">
+
+                            <div class="card-body">
+                                <h3 id="api-title" class="card-text"></h3>
+                                <br>
+
+                                <h5 id="api-title2" class="card-text"></h5>
+
+                                <p id="api-content" class="card-text"></p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"></small>
+                                    <small id="api-date" class="text-muted"></small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"></small>
+                                    <small id="api-en" class="text-muted"></small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div id="api-geres"></div>
+                                    <div id="api-contries"></div>
+                                    <small id="api-status" class="text-muted"></small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <a id="api-homepage" href="" class="btn btn-success my-2">HomePage</a>
+                        <a href="javascript:history.back();" class="btn btn-warning my-2">Go Back</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>ⓒ Aridjaya</p>
+        </div>
+    </footer>
+
+</body>
+
 </html>
