@@ -9,7 +9,6 @@
     <title>Movie List</title>
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/album/album.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="./API_KEY.js"></script>
     <script src="./func.js"></script>
@@ -102,9 +101,11 @@
                                 <h5 id="api-title2" class="card-text"></h5>
                                 <p id="api-content" class="card-text"></p>
 
-                                <a id="api-watch" href="" class="btn btn-primary">Watch</a>
-                                <a id="api-download" href="" class="btn btn-secondary">Download</a>
-
+                                <div class="d-flex justify-content-center">
+                                    <a id="api-watch" href="" class="btn btn-primary">Watch</a>
+                                    <a id="api-download" href="" class="btn btn-danger">Download</a>
+                                </div>
+                                
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="text-muted"></small>
                                     <small id="api-date" class="text-muted"></small>
