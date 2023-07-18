@@ -28,11 +28,6 @@
                     );
                     $("#api-back").css("background-size", "cover");
                     $("#api-back").css("background-repeat", "no-repeat");
-                    $("#api-video").attr(
-                        "source",
-                        "https://api.themoviedb.org/3/movie/" + play + "?api_key=" + API_KEY +
-                        "&language=en-US"
-                    );
                     $("#api-img").attr(
                         "src",
                         "https://image.tmdb.org/t/p/original/" + data.poster_path
@@ -101,11 +96,8 @@
                             <div class="card-body">
                                 <h3 id="api-title" class="card-text"></h3>
                                 <br>
-                                <video id="api-video"></video>
                                 <h5 id="api-title2" class="card-text"></h5>
-
                                 <p id="api-content" class="card-text"></p>
-
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="text-muted"></small>
                                     <small id="api-date" class="text-muted"></small>
@@ -119,6 +111,9 @@
                                     <div id="api-contries"></div>
                                     <small id="api-status" class="text-muted"></small>
                                 </div>
+
+                                <button type="button" class="btn btn-primary">Primary</button>
+                                <button type="button" class="btn btn-secondary">Secondary</button>
 
                             </div>
                         </div>
