@@ -103,13 +103,19 @@
                                     </div>
                                     <embed
                                         src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"></embed>
-                                
-                                
-                                        <video width="320" height="240" autoplay muted>
-                                            <source src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4" type="video/mp4">
-                                          </video>
 
-                                    </div>
+
+                                    <video id="my-video" class="video-js" controls preload="auto" width="640"
+                                        height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                                        <source
+                                            src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"
+                                            type="video/mp4" />
+                                        <source
+                                            src="https://cdn.jsdelivr.net/gh/sir-reynolds/assets-team@main/movie/topper/movie.mp4"
+                                            type="video/webm" />
+                                    </video>
+
+                                </div>
 
                                 <div class="mb-4 text-center">
                                     <a id="api-link" href="" class="btn btn-success my-2">Watch</a>
