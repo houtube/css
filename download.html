@@ -1,211 +1,76 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Pure Javascript CountDown</title>
-    <meta name="description" content="Pure Javascript CountDown">
-    <meta name="author" content="FlopUp.Net">
-
-    <style type="text/css">
-        #content {
-            border-bottom: 1px solid #CCCCCC;
-            margin: 0;
-            padding-bottom: 50px;
-            padding-top: 50px;
-            width: 100%;
-        }
-
-        #console {
-            font-size: 13px;
-            height: 300px;
-            line-height: 13px;
-            margin: 10px auto 0;
-            overflow: auto;
-            padding: 0;
-            text-overflow: ellipsis;
-            white-space: pre-line;
-            width: 50%;
-        }
-
-        #svg_download_countdown {
-            display: block;
-            margin: 0 auto;
-        }
-
-        #svg_download_countdown #loader {
-            fill: #FFFFFF
-        }
-
-        /*
-        #svg_download_countdown #border { 
-            fill: #00A8EC 
-        }
-        */
-        #svg_download_countdown #countdown {
-
-            font-size: 64px;
-            display: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Movie List</title>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/album/album.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var sec = 5
+            var timer = setInterval(function () {
+                $("#mdtimer span").text(sec--);
+                if (sec == 0) {
+                    $("#makingdifferenttimer").delay(1000).fadeIn(1000);
+                    $("#mdtimer").hide(1000).fadeOut(fast);
+                }
+            }, 1000);
+        });
+    </script>
 </head>
 
 <body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a href="./index.html" class="navbar-brand d-flex align-items-center">
+                    <strong>Houtube</strong>
+                </a>
+                <div>
+                    <a href="./siginIn.html" class="btn btn-outline-secondary my-2">Sign In</a>
+                    <a href="./siginUp.html" class="btn btn-outline-secondary my-2">Sigin Up</a>
+                    <a href="https://www.themoviedb.org/" class="btn btn-primary my-2 text-right">themoviedb.org</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <div id="content">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            id="svg_download_countdown" width="250" height="250" viewbox="0 0 250 250">
-            <defs>
-                <linearGradient id="gradient_01" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:rgb(0,168,236); stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgb(255,255,0); stop-opacity:0.5" />
-                </linearGradient>
-            </defs>
-            <path id="border" transform="translate(125, 125)" fill="url(#gradient_01)" />
-            <path id="loader" transform="translate(125, 125) scale(.84)" />
-            <text id="countdown" fill="url(#gradient_01)" x="105" y="145">0</text>
-        </svg>
-    </div>
-    <div id="console"></div>
-    <script type="text/javascript">
-        (function () {
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">
+                        <h4 class=" no-drag" style="margin: 5px;">Sigin Up</h4>
+                    </div>
+                    <div class="card-body" style="padding:30px 50px 30px 50px">
+                        <a class="button" href="https://aridjaya.com" id="makingdifferenttimer" style="display: none;"
+                            target="_blank">Download</a>
+                        <div id="mdtimer">
+                            <b></b>
+                            <div style="font-size: large;">
+                                <b>Please Wait <span>5</span> seconds</b></div>
+                        </div>
+                    </div>
+                </div>
 
-            var console_line = 0;
+            </div>
+        </section>
+    </main>
 
-            countdown.style.display = 'block';
-            start_countdown();
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>ⓒ Aridjaya</p>
+        </div>
+    </footer>
 
-            function start_countdown() {
-
-                var main_container = document.getElementById('svg_download_countdown'),
-                    loader = document.getElementById('loader'),
-                    border = document.getElementById('border'),
-                    countdown = document.getElementById('countdown'),
-                    π = Math.PI,
-                    total_seconds = 30,
-                    elipsed_seconds = 0,
-                    timer_start = new Date(),
-                    refresh_rate = 25 // (100 / total_seconds) * 100
-                    ,
-                    α = 0,
-                    last_loop = false,
-                    finishAnimTimer = null,
-                    scaleAnimation = 84;
-
-                InitiateCountDownLoop();
-
-                function InitiateCountDownLoop() {
-                    drawCountdown();
-                    if (Math.round(elipsed_seconds % 60) != total_seconds) {
-                        setTimeout(InitiateCountDownLoop, refresh_rate);
-                    } else if (last_loop === false) {
-                        last_loop = true;
-                        setTimeout(InitiateCountDownLoop, refresh_rate);
-                    } else {
-                        appendCountdownSeconds();
-                        countdown.innerHTML = "push";
-                        adjustCountDownOffset();
-                        startfinishAnimation();
-                        return;
-                    }
-                };
-
-                function drawCountdown() {
-                    getElapsedSeconds();
-                    if (last_loop === false) {
-                        α = ((elipsed_seconds * (360 / (total_seconds * 1000))) * 1000);
-                        α %= 360;
-                        var r = (α * π / 180),
-                            x = Math.round((Math.sin(r) * 125) * 100) / 100,
-                            y = Math.round((Math.cos(r) * -125) * 100) / 100,
-                            mid = (α > 180) ? 1 : 0,
-                            anim = 'M 0 0 v -125 A 125 125 1 ' +
-                            mid + ' 1 ' +
-                            x + ' ' +
-                            y + ' z';
-                    } else {
-                        var anim = 'M 0 0 v -125 A 125 125 1 1 1 -0.1 -125 z';
-                    }
-
-                    loader.setAttribute('d', anim);
-                    border.setAttribute('d', anim);
-                    appendCountdownSeconds();
-                }; // drawCountdown END
-                function getElapsedSeconds() {
-                    var timeDifference = (new Date() - timer_start) / 1000;
-                    elipsed_seconds = timeDifference;
-                }; // getElapsedSeconds END
-                function appendCountdownSeconds() {
-                    countdown.textContent = (total_seconds - Math.round(elipsed_seconds % 60)).toString();
-                    adjustCountDownOffset();
-                }; // appendCountdowSeconds END
-                function adjustCountDownOffset() {
-                    var main_container_width = main_container.getAttribute("width");
-                    var main_container_height = main_container.getAttribute("height");
-                    var counter_width = countdown.getBBox().width;
-                    var counter_height = countdown.getBBox().height;
-                    var countdown_x = Math.round((main_container_width - counter_width) / 2);
-                    var countdown_y = Math.round((main_container_height - counter_height) - (counter_height / 2));
-                    countdown.setAttribute("x", countdown_x);
-                    countdown.setAttribute("y", countdown_y);
-                };
-
-                function startfinishAnimation() {
-                    if (finishAnimTimer == null) {
-                        finishAnimTimer = setInterval(finishAnimation, 100);
-                    }
-                };
-
-                function stopfinishAnimation() {
-                    if (finishAnimTimer != null) {
-                        clearInterval(finishAnimTimer);
-                        loader.setAttribute("transform", "translate(125, 125) scale(.84)");
-                        finishAnimTimer = null;
-                    }
-                };
-
-                function finishAnimation() {
-                    var x = loader.getAttribute("transform");
-                    if (scaleAnimation >= 84 & scaleAnimation < 95) {
-                        scaleAnimation = scaleAnimation + 1;
-                    } else if (scaleAnimation == 95) {
-                        scaleAnimation = 84;
-                    }
-                    var transform = "translate(125, 125) scale(." + scaleAnimation + ")";
-                    loader.setAttribute("transform", transform);
-                };
-
-                function loaderClick(event) {
-                    if (event.target.id == 'countdown' || event.target.id == 'border' || event.target.id ==
-                        'loader') {
-                        if (finishAnimTimer != null) {
-                            stopfinishAnimation();
-
-                            var r = confirm("You waited enough! Wait again?");
-                            if (r == true) {
-                                start_countdown();
-                            } else {
-                                alert("Asshole!");
-                            }
-                        }
-                    }
-                    //log_(event.target.id);
-
-                };
-                main_container.addEventListener("click", loaderClick, false);
-            }; // start_countdown END
-
-            function log_(data) {
-                var console = document.getElementById('console');
-                console.innerHTML = console.innerHTML + "\r\n" + "<small>" + console_line + "</small> " + data;
-                console.scrollTop = console.scrollHeight;
-                console_line++;
-            }
-        })();
-    </script>
 </body>
 
 </html>
