@@ -10,30 +10,6 @@
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/album/album.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <style type="text/css">
-        p.labels a {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 500;
-            border-radius: 50px;
-            padding: 4px 15px;
-            background: #b45357;
-        }
-
-        a.post-titles {
-            pointer-events: auto !important;
-            cursor: pointer
-        }
-
-        a.post-titles:hover {
-            color: #b45357
-        }
-
-        ol li {
-            list-style-type: decimal;
-            line-height: 25px;
-        }
-    </style>
 </head>
 
 <body>
@@ -323,8 +299,8 @@
                                 while (b < postTitle.length) {
                                     temp1 = postLabels[b];
                                     document.write("<p/>");
-                                    document.write('<p class="card fs-2 fw-bold"><a href="/search/label/' + temp1 + '">' + temp1 +
-                                        "</a></p><ol>");
+                                    document.write('<p class="card p-2 fs-2 fw-bold"><a href="/search/label/' + temp1 + '">' + temp1 +
+                                        "</a></p><ol class='text-left'>");
                                     firsti = a;
                                     do {
                                         document.write("<li>");
