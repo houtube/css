@@ -17,7 +17,7 @@
                 $("#mdtimer span").text(sec--);
                 if (sec == 0) {
                     $("#makingdifferenttimer").delay(1000);
-                    $("#mdtimer").hide;
+                    $("#mdtimer").hide(0);
                 }
             }, 1000);
         });
